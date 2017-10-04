@@ -41,19 +41,22 @@ $content = file_get_contents('php://input');
 $data = json_decode($content, true);
 
 if (!is_null($data['events'])) {
-
-    $replyToken = $data['events']['replyToken'];
     
-    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('This message from bot');
-    
-    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-    
-    if ($response->isSucceeded()) {
-        return;
-    } 
-    
-    // Failed
-    //echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+    foreach($data['events'] as $event) {
+        
+        $replyToken = $event['replyToken'];
+        
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('This message from bot');
+        
+        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        
+        if ($response->isSucceeded()) {
+            return;
+        } 
+        
+        // Failed
+        //echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+    }
 }
 
 echo 'OK';
