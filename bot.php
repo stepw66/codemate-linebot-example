@@ -2,6 +2,23 @@
 
 $access_token = 'KbQAojIxyVyVscXVmUhvrvvwhWdsxsT6lKcmGDaORsN0iiXthesiJx2dBTRx05DCYz6LiXscNEs0SrUsyuxkS5u0TaH5CuUWl8qf9MZp914Dh2caSIMkP7nLDk8bE7paFcK5C1N05RA1LerVg47uOAdB04t89/1O/w1cDnyilFU=';
 
+/* Line text message structure.
+ {
+  "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+  "type": "message",
+  "timestamp": 1462629479859,
+  "source": {
+    "type": "user",
+    "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+  },
+  "message": {
+    "id": "325708",
+    "type": "text",
+    "text": "Hello, world"
+  }
+}
+*/
+
 // Linebot API post JSON to here.
 $content = file_get_contents('php://input');
 
