@@ -1,0 +1,54 @@
+<?php
+
+$access_token = 'KbQAojIxyVyVscXVmUhvrvvwhWdsxsT6lKcmGDaORsN0iiXthesiJx2dBTRx05DCYz6LiXscNEs0SrUsyuxkS5u0TaH5CuUWl8qf9MZp914Dh2caSIMkP7nLDk8bE7paFcK5C1N05RA1LerVg47uOAdB04t89/1O/w1cDnyilFU=';
+
+// Linebot API post JSON to here.
+$content = file_get_contents('php://input');
+
+$events = json_decode($content, true);
+
+// We know what type of message that user send to us. 
+// But now we just interested in text only
+
+if (!is_null($events['events'])) {
+	 
+	foreach ($events['events'] as $event) {
+		 
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+			 
+			$text = $event['message']['text'];
+            
+            // Linebot send replyToken to us for set responed message.  
+			$replyToken = $event['replyToken'];
+
+			$messages = [
+				'type' => 'text',
+				'text' => $text
+			];
+
+			// Post message back to Line Server.
+			$url = 'https://api.line.me/v2/bot/message/reply';
+			$data = [
+				'replyToken' => $replyToken,
+				'messages' => [$messages],
+			];
+            $post = json_encode($data);
+
+            // AccessToken use here. 
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
+
+			echo $result . "\r\n";
+		}
+	}
+}
+
+echo "OK";
