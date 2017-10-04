@@ -50,12 +50,6 @@ if (!is_null($data['events'])) {
         
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         
-        if ($response->isSucceeded()) {
-            return;
-        } 
-        
-        // Failed
-        //echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
     }
 }
 
