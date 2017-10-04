@@ -21,14 +21,20 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '30bbe3ecdfd9aa90dbc95
 
 $content = file_get_contents('php://input');
 $events = json_decode($content, true);
-$replyToken = $event['replyToken'];
 
-$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('This message from bot');
+if (!is_null($events['events'])) {
 
-$response = $bot->replyMessage($replyToken, $textMessageBuilder);
-if ($response->isSucceeded()) {
-    return;
+    $replyToken = $event['replyToken'];
+    
+    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('This message from bot');
+    
+    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+    if ($response->isSucceeded()) {
+        return;
+    }
+    
+    // Failed
+    //echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 }
 
-// Failed
-//echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+echo 'OK';
