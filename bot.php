@@ -1,6 +1,6 @@
 <?php
 
-$access_token = 'YcicwQDJM0MQc9ugmx8eaNLPHanLI82eJIWRtqcAmV3BQuRvv58nnLRgz80ihZw0q7ertIm2+4fWtgiMRtydUf88bn9FO/ltladihcBnDLuVpcYrbUb0LKqA6cgG37ddDBIoF8bkRnQez30zOwyJtgdB04t89/1O/w1cDnyilFU=';
+$access_token = '';
 
 /* Line text message structure.
 {
