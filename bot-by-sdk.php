@@ -43,12 +43,16 @@ $data = json_decode($content, true);
 if (!is_null($data['events'])) {
     
     foreach($data['events'] as $event) {
+
+      if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
         
         $replyToken = $event['replyToken'];
         
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('This message from bot');
         
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+
+      }
         
     }
 }
