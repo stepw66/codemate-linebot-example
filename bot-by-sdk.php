@@ -1,8 +1,8 @@
 <?php
 require_once('./vendor/autoload.php');
 
-$access_token = 'KbQAojIxyVyVscXVmUhvrvvwhWdsxsT6lKcmGDaORsN0iiXthesiJx2dBTRx05DCYz6LiXscNEs0SrUsyuxkS5u0TaH5CuUWl8qf9MZp914Dh2caSIMkP7nLDk8bE7paFcK5C1N05RA1LerVg47uOAdB04t89/1O/w1cDnyilFU=';
-$secret_token = '30bbe3ecdfd9aa90dbc95dcafc62ef41';
+$access_token = '';
+$secret_token = '';
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $secret_token]);
